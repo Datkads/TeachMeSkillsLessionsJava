@@ -3,27 +3,40 @@ package Lecture5;
 public class CreditCard {
 
     String cardHolderName;
-    int cardNumber;
-    int currentBalance;
+    String cardNumber;
+    int balance;
 
-    int balanceTopUp (int topUp) {
-        if (topUp > 0) {
-            return topUp + currentBalance;
-        }
-        return topUp;
+    CreditCard (String cardHolderName, String cardNumber, int balance) {
+        this.cardHolderName = cardHolderName;
+        this.cardNumber = cardNumber;
+        this.balance = balance;
     }
-    int balanceSubtraction (int subtraction){
-        if (subtraction > 0 && subtraction <= currentBalance){
-         return currentBalance - subtraction;
+
+    int deposit(int topUp) {
+        if (topUp > 0) {
+            int result;
+            result = topUp + balance;
+            return result;
         }
         else {
-            System.out.println("Subtraction of " + subtraction + " isn't possible as your current balance has insufficient funds.");
+            System.out.println("Deposit of " + topUp + " to the balance is not possible.");
+            return topUp;
         }
-        return subtraction;
+    }
+    int withdrawal(int subtraction){
+        if (subtraction > 0 && subtraction <= balance){
+            int result;
+         result = balance - subtraction;
+         return result;
+        }
+        else {
+            System.out.println("Withdrawal of " + subtraction + " is not possible as your current balance has insufficient funds.");
+            return subtraction;
+        }
     }
     void displayInfo(){
         System.out.println("The cardholder name: " + cardHolderName);
         System.out.println("The cards digits: " + cardNumber);
-        System.out.println("The current balance: " + currentBalance);
+        System.out.println("The current balance: " + balance);
     }
 }
